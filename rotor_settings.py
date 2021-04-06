@@ -30,3 +30,15 @@ class RotorSettings(object):
     def rotate(self):
         self.__shift += 1
         self.__shift %= len(alphabet)
+
+    def is_moving(self):
+        shift = self.__shift
+        moves = self.__rotor.moves
+        return shift in moves
+
+    def is_moving_next(self):
+        shift = self.__shift
+        moves = self.__rotor.moves
+        shift += 1
+        shift %= len(alphabet)
+        return shift in moves

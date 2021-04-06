@@ -45,3 +45,8 @@ class Rotor(object):
                 i = i % len(loop)
                 return loop[i]
         return symbol
+
+    def get_moves(self) -> List[int]:
+        return self.__moves
+
+    moves: List[int] = property(get_moves)

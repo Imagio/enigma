@@ -6,28 +6,37 @@ from reflector import Reflector
 
 class TestEnigma(unittest.TestCase):
 
-    def test_encrypt_A_rot_1_shift_5_refl_B(self):
-        rotor1 = Rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ")
+    def test_encrypt_A_rot_1_shift_4_refl_B(self):
+        rotor1 = Rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ", [17])
         reflectorB = Reflector("YRUHQSLDPXNGOKMIEBFZCWVJAT")
-        rotor1_settings = RotorSettings(rotor1, 5)
-        enigma = Enigma(reflectorB, [rotor1_settings])
 
-        encrypted = enigma.encrypt("A")
+        encryptor_rotor1_settings = RotorSettings(rotor1, 4)
+        encryptor = Enigma(reflectorB, [encryptor_rotor1_settings])
+
+        decryptor_rotor1_settings = RotorSettings(rotor1, 4)
+        decryptor = Enigma(reflectorB, [decryptor_rotor1_settings])
+
+        encrypted = encryptor.encrypt("A")
         self.assertEqual("I", encrypted)
 
-        decrypted = enigma.encrypt("I")
+        decrypted = decryptor.encrypt("I")
         self.assertEqual("A", decrypted)
 
-    def test_encrypt_A_rot_1_shift_5_rot_3_shift_2_refl_B(self):
+    def test_encrypt_A_rot_1_shift_4_rot_3_shift_2_refl_B(self):
         rotor1 = Rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ")
         rotor3 = Rotor("BDFHJLCPRTXVZNYEIWGAKMUSQO")
         reflectorB = Reflector("YRUHQSLDPXNGOKMIEBFZCWVJAT")
-        rotor1_settings = RotorSettings(rotor1, 5)
-        rotor3_settings = RotorSettings(rotor3, 2)
-        enigma = Enigma(reflectorB, [rotor1_settings, rotor3_settings])
 
-        encrypted = enigma.encrypt("A")
+        rotor1_settings = RotorSettings(rotor1, 4)
+        rotor3_settings = RotorSettings(rotor3, 2)
+        encryptor = Enigma(reflectorB, [rotor1_settings, rotor3_settings])
+
+        rotor1_settings = RotorSettings(rotor1, 4)
+        rotor3_settings = RotorSettings(rotor3, 2)
+        decryptor = Enigma(reflectorB, [rotor1_settings, rotor3_settings])
+
+        encrypted = encryptor.encrypt("A")
         self.assertEqual("E", encrypted)
 
-        decrypted = enigma.encrypt("E")
+        decrypted = decryptor.encrypt("E")
         self.assertEqual("A", decrypted)

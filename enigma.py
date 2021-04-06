@@ -22,7 +22,27 @@ class Enigma(object):
         return a
 
     def __rotate(self):
-        pass
+        is_moved = False
+        for rotor in self.__rotors:
+            rotor.rotate()
+            if not rotor.is_moving():
+                break
+            is_moved = True
+        if is_moved:
+            return
+
+        is_moved = False
+        for rotor in self.__rotors[1:]:
+            if is_moved:
+                rotor.rotate()
+                is_moved = False
+                if rotor.is_moving():
+                    is_moved = True
+                continue
+
+            if rotor.is_moving_next():
+                rotor.rotate()
+                is_moved = True
 
     def encrypt(self, data: str) -> str:
         res = ""
