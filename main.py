@@ -1,4 +1,5 @@
 from rotor import *
+from reflector import *
 
 ROTOR_DICT = {
     0: Rotor("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
@@ -14,3 +15,10 @@ ROTOR_DICT = {
     "gamma": Rotor("FSOKANUERHMBTIYCWLQPZXVGJD"),
 }
 
+REFLECTORS = {
+    "A": Reflector("EJMZALYXVBWFCRQUONTSPIKHGD"),
+    "B": Reflector("YRUHQSLDPXNGOKMIEBFZCWVJAT"),
+    "C": Reflector("FVPJIAOYEDRZXWGCTKUQSBNMHL"),
+    "B Thin": Reflector("ENKQAUYWJICOPBLMDXZVFTHRGS"),
+    "C Thin": Reflector("RDOBJNTKVEHMLFCWZAXGYIPSUQ"),
+}

@@ -2,7 +2,7 @@ from rotor import Rotor
 from common import alphabet
 
 
-class RotorSettings():
+class RotorSettings(object):
     __rotor: Rotor = None
     __shift: int = None
 
