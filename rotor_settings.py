@@ -6,12 +6,12 @@ class RotorSettings(object):
     __rotor: Rotor = None
     __shift: int = None
 
-    def __init__(self, rotor, shift):
+    def __init__(self, rotor: Rotor, shift: int):
         self.__rotor = rotor
         self.__shift = shift
 
     @staticmethod
-    def shift(symbol, symbol_shift):
+    def shift(symbol: str, symbol_shift: int) -> str:
         i = alphabet.index(symbol)
         i += symbol_shift
         i %= len(alphabet)

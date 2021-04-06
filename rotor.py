@@ -7,7 +7,10 @@ class Rotor(object):
     __moves: List[int] = None
     __loops: List[str] = None
 
-    def __init__(self, alphabet, moves=[]):
+    def __init__(self, alphabet: str, moves: List[int] = None):
+        if moves is None:
+            moves = []
+
         self.__alphabet = alphabet
         self.__moves = moves
         letters = set(common.alphabet)
