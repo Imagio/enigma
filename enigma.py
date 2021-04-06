@@ -1,16 +1,20 @@
 from reflector import Reflector
 from rotor_settings import RotorSettings
+from rotor_state import RotorState
+from commutator import Commutator
 from typing import *
 from common import alphabet
 
 
 class Enigma(object):
-    __rotors: List[RotorSettings] = None
+    __rotors: List[RotorState] = None
     __reflector: Reflector = None
+    __commutator: Commutator = None
 
-    def __init__(self, refl: Reflector, rotors: List[RotorSettings]):
+    def __init__(self, refl: Reflector, rotors: List[RotorSettings], commutator: Commutator):
         self.__reflector = refl
-        self.__rotors = rotors
+        self.__rotors = [RotorState(settings) for settings in rotors]
+        self.__commutator = commutator
 
     def __encrypt_symbol(self, symbol):
         a = symbol
@@ -46,9 +50,12 @@ class Enigma(object):
 
     def encrypt(self, data: str) -> str:
         res = ""
-        for ch in data:
+        for ch in data.upper():
             if ch not in alphabet:
                 continue
             self.__rotate()
-            res += self.__encrypt_symbol(ch)
+            ch = self.__commutator.replace(ch)
+            ch = self.__encrypt_symbol(ch)
+            ch = self.__commutator.replace(ch)
+            res += ch
         return res
