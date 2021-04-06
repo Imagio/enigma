@@ -25,7 +25,7 @@ class Rotor(object):
                 ch = alphabet[i]
             self.__loops.append(loop)
 
-    def encrypt(self, symbol):
+    def encrypt(self, symbol: str) -> str:
         for loop in self.__loops:
             if symbol in loop:
                 i = loop.index(symbol)
@@ -34,7 +34,7 @@ class Rotor(object):
                 return loop[i]
         return symbol
 
-    def decrypt(self, symbol):
+    def decrypt(self, symbol: str) -> str:
         for loop in self.__loops:
             if symbol in loop:
                 i = loop.index(symbol)
