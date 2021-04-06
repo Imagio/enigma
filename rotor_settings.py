@@ -5,7 +5,7 @@ class RotorSettings(object):
     __rotor: Rotor = None
     __shift: int = None
 
-    def __init__(self, rotor: Rotor, shift: int):
+    def __init__(self, rotor: Rotor, shift: int = 0):
         self.__rotor = rotor
         self.__shift = shift
 

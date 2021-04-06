@@ -1,5 +1,8 @@
+import common
 from rotor import *
 from reflector import *
+from commutator import *
+from enigma import *
 
 ROTOR_DICT = {
     0: Rotor("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
@@ -22,3 +25,17 @@ REFLECTORS = {
     "B Thin": Reflector("ENKQAUYWJICOPBLMDXZVFTHRGS"),
     "C Thin": Reflector("RDOBJNTKVEHMLFCWZAXGYIPSUQ"),
 }
+
+machine = Enigma(
+    REFLECTORS["B"],
+    [
+        RotorSettings(ROTOR_DICT[1]),
+        RotorSettings(ROTOR_DICT[3], 5),
+        RotorSettings(ROTOR_DICT[2], -10),
+        RotorSettings(ROTOR_DICT[5], 4)
+    ],
+    Commutator("")
+)
+
+encrypted = machine.encrypt(common.alphabet)
+print(encrypted)
