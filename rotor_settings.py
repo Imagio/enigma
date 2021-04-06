@@ -26,3 +26,7 @@ class RotorSettings(object):
         before = RotorSettings.shift(symbol, self.__shift)
         after = self.__rotor.decrypt(before)
         return RotorSettings.shift(after, -self.__shift)
+
+    def rotate(self):
+        self.__shift += 1
+        self.__shift %= len(alphabet)
